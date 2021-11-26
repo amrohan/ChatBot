@@ -6,9 +6,9 @@ A is a simple Telegram bot that responds to users automatically when they commun
 
 Test the bot here 👉 [Chat-Bot](https://t.me/amrohanbot)
 
-<center>
+<p align="center">
 <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/luocata9aopbnrfspp2v.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="40%" height="40%" />
-</center>
+</p>
 
 ## Create Bot
 
