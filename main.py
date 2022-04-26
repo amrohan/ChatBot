@@ -1,14 +1,24 @@
 import os
 import logging
+from scrapper import devto, tldrData, get_quote
+from keep_alive import keep_alive
 import responses
-from telegram.ext import *
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from dotenv import load_dotenv
 
-# we use this to get api key from env files
+# Getiing bot token from env file
 load_dotenv()
-API_KEY = os.getenv('API_KEY')
+Bot_Token = os.getenv('Bot_Token')
 
-# Set up the logging
+
+'''
+💡Use this version if you deploying it on repl.it
+Add the bot token in secretes section
+# Getiing bot token from env file
+  Bot_Token = os.environ['Bot_Token']
+'''
+
+
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
@@ -18,42 +28,47 @@ logging.info('Starting Bot...')
 # all update.message are reply from bots to user
 def start(update, context):
     update.message.reply_text(
-        'Hello there, I\'m an AI bot who can converse with you or assist you in completing tasks.\n To start, say hey, hi, or hello.')
-
-
-def help(update, context):
-    update.message.reply_text('Type cmd for options or click /cmd')
+        "Good day there, I'm a bot that can communicate with you. You can get the most up-to-date tech news from devto or tldr, and more services will be added shortly..\n To start, say hey, hi, or hello.\n Get all Commands -/cmd")
 
 
 def cmd(update, context):
-    update.message.reply_text('Availble Commands:\nFor notes- /notes\n ')
-
-
-def notes(update, context):
     update.message.reply_text(
-        'Soon, you\'ll be able to get your hands on some notes.')
+        '/tldr - TLDR tech news\n/devto-Devto todays popular artical\n/quotes - Random quotest')
 
 
-def list(update, context):
-    update.message.reply_text(
-        'All commands you can use\n /help : offcourse for help dumbo\n\n /notes: To get notes\n\n /projects : for all projects🔥')
+def quote(update, context):
+    data = get_quote()
+    update.message.reply_text(data)
+
+
+# tldr new
+def tldr(update, context):
+    data = tldrData()
+    update.message.reply_text(data)
+
+# devto News
+
+
+def devTo(update, context):
+    data = devto()
+    # reply_keyboard = [['Today,s Top', 'Latest',]]
+    #   reply_markup=ReplyKeyboardMarkup(
+    #           reply_keyboard, one_time_keyboard=True
+    #   )
+    update.message.reply_text(data)
+
 
 # there two methods to crete functions to get repond from bot this is 2nd one
 
 
 def socials(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="List of Socails are down below:\n {Github} https://github.com/amrohan\n\n {Twitter} https://twitter.com/amrohann\n\n {Instagram} https://www.instagram.com/amrohann\n\n {Email} hello@rohan.ml")
+                             text="List of Socails are down below:\n {Github} https://github.com/amrohan\n\n {Twitter} https://twitter.com/rohansalunkhe_\n\n {Instagram} https://www.instagram.com/amrohann\n\n {Email} amrohanx@gmail.com")
 
 
 def source_code(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="the source code can be accessed here\n {Github}\n https://github.com/amrohan/ChatBot")
-
-
-def projects(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="List of projects are down below:\n \n {Chat App} \n https://chathub.gq \n \n { LinkTree } \n https://linkhub.ml")
+                             text="the source code can be accessed here\n {Replit}\n https://replit.com/@amrohan/chatbot")
 
 
 def handle_message(update, context):
@@ -72,7 +87,7 @@ def error(update, context):
 
 # Run the programms from here
 if __name__ == '__main__':
-    updater = Updater(API_KEY, use_context=True)
+    updater = Updater(Bot_Token, use_context=True)
     dp = updater.dispatcher
 
     # Commands handler which callback our commands when user ask for it
@@ -82,15 +97,15 @@ if __name__ == '__main__':
 
     dp.add_handler(CommandHandler('cmd', cmd))
 
-    dp.add_handler(CommandHandler('notes', notes))
-
-    dp.add_handler(CommandHandler('list', list))
-
     dp.add_handler(CommandHandler('socials', socials))
 
     dp.add_handler(CommandHandler('source_code', source_code))
 
-    dp.add_handler(CommandHandler('projects', projects))
+    dp.add_handler(CommandHandler('quotes', quote))
+    # tldr handler
+    dp.add_handler(CommandHandler('tldr', tldr))
+    # Dev To
+    dp.add_handler(CommandHandler('devto', devTo))
 
     # Messages
     dp.add_handler(MessageHandler(Filters.text, handle_message))
@@ -98,6 +113,7 @@ if __name__ == '__main__':
     # Log all errors
     dp.add_error_handler(error)
 
+    keep_alive()
     # Run the bot
     updater.start_polling(1.0)
     # Idle state give bot time to go in idle
