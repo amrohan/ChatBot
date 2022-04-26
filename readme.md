@@ -2,20 +2,21 @@
 
 A is a simple Telegram bot that responds to users automatically when they communicate with it.
 
-
 ## Latest Update (v0.1.0)
+
 26/04/2022
 
 **Click on badge to run it on repl.it 👉🚀
 [![Run on Repl.it](https://repl.it/badge/github/amrohan/ChatBot)](https://repl.it/github/amrohan/ChatBot)**
 
-
 Changes to the bot now allow you to host fully on Replit.com without having to configure anything. Simply replace the scretes.
 
 Also added new commands:
+
 - /tldr - Get a tldr news
 - /devto - Get a dev.to top 5 posts of the day
 - /quotes - Get a random quote
+
 ## Demo
 
 Test the bot here 👉 [Chat-Bot](https://t.me/amrohan_bot)
@@ -78,7 +79,8 @@ pip install python-dotenv
 Create .env file in the root folder of your cloned GitHub repo and add your botfather telegram bot token.
 
 ```
-API_KEY = {Telegram Bot Token}
+Bot_Token = {Telegram Bot Token}
+Dev_Token = {dev.to api token}
 ```
 
 Now just run the `[main.py](http://main.py)` in terminal.
