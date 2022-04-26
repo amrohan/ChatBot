@@ -7,7 +7,7 @@ A is a simple Telegram bot that responds to users automatically when they commun
 26/04/2022
 
 **Click on badge to run it on repl.it 👉🚀
-[![Run on Repl.it](https://repl.it/badge/github/amrohan/ChatBot)](https://repl.it/github/amrohan/ChatBot)**
+[![Run on Repl.it](https://repl.it/badge/github/amrohan/ChatBot)](https://replit.com/@amrohan/chatbot)**
 
 Changes to the bot now allow you to host fully on Replit.com without having to configure anything. Simply replace the scretes.
 
