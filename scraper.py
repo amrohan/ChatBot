@@ -56,8 +56,8 @@ def tldrData():
         return ("Sorry, on "+date+" there is no new article on tldr.tech ☹️")
 
 
-# Getting Dev To articles:
-def devto():
+# Getting Devtop Top articles:
+def devtoTop():
     url = "https://dev.to/api/articles/"
     res = requests.get(url, headers={"Api-Key": Dev_Token})
     data = res.json()
@@ -86,7 +86,7 @@ def devto():
     desc5 = data[5].get("description")
     url5 = data[5].get("url")
 
-    finalData = 'Dev.to Top Article 🧑‍💻\n'+'\n'+'Article : '+title+'\n\n' + \
+    topArticles = 'Dev.to Top Article 🧑‍💻\n'+'\n'+'Article : '+title+'\n\n' + \
         'Description : '+desc+'\n\n'+'Read Full article at : '+url+'\n\n' +\
         '--------x--------'+'\n\n'+'Article_01 : '+title1+'\n\n' + \
         'Description : '+desc1+'\n\n'+'Read Full article at : '+url1+'\n\n'\
@@ -99,9 +99,55 @@ def devto():
         '--------x--------'+'\n\n'+'Article_05 : '+title5+'\n\n' + \
         'Description : '+desc5+'\n\n'+'Read Full article at : '+url5+'\n\n'
 
-    print('Devto Sent Succesfully 🚀')
+    print('Devto top articles sent succesfully 🚀')
+    return topArticles
 
-    return finalData
+# Getting latest articles from devto
+
+
+def devtoLatest():
+    latest = "https://dev.to/api/articles/latest"
+    latestRes = requests.get(latest, headers={"Api-Key": Dev_Token})
+    data = latestRes.json()
+
+    newtitle = data[0].get("title")
+    newdesc = data[0].get("description")
+    newurl = data[0].get("url")
+
+    newtitle1 = data[1].get("title")
+    newdesc1 = data[1].get("description")
+    newurl1 = data[1].get("url")
+
+    newtitle2 = data[2].get("title")
+    newdesc2 = data[2].get("description")
+    newurl2 = data[2].get("url")
+
+    newtitle3 = data[3].get("title")
+    newdesc3 = data[3].get("description")
+    newurl3 = data[3].get("url")
+    newtitle4 = data[4].get("title")
+    newdesc4 = data[4].get("description")
+    newurl4 = data[4].get("url")
+
+    newtitle5 = data[5].get("title")
+    newdesc5 = data[5].get("description")
+    newurl5 = data[5].get("url")
+
+    latestArticles = 'Dev.to Latest Article 🧑‍💻\n'+'\n'+'Article : '+newtitle+'\n\n' + \
+        'Description : '+newdesc+'\n\n'+'Read Full article at : '+newurl+'\n\n' +\
+        '--------x--------'+'\n\n'+'Article_01 : '+newtitle1+'\n\n' + \
+        'Description : '+newdesc1+'\n\n'+'Read Full article at : '+newurl1+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_02 : '+newtitle2+'\n\n' + \
+        'Description : '+newdesc2+'\n\n'+'Read Full article at : '+newurl2+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_03 : '+newtitle3+'\n\n' + \
+        'Description : '+newdesc3+'\n\n'+'Read Full article at : '+newurl3+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_04 : '+newtitle4+'\n\n' + \
+        'Description : '+newdesc4+'\n\n'+'Read Full article at : '+newurl4+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_05 : '+newtitle5+'\n\n' + \
+        'Description : '+newdesc5+'\n\n'+'Read Full article at : '+newurl5+'\n\n'
+
+    print('Devto latest articles sent succesfully 🚀')
+    return latestArticles
 
 
 def get_quote():

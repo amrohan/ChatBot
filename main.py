@@ -1,9 +1,10 @@
 import os
 import logging
-from scrapper import devto, tldrData, get_quote
+from scraper import devtoTop, devtoLatest, tldrData, get_quote
 from keep_alive import keep_alive
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 from dotenv import load_dotenv
 
 # Getiing bot token from env file
@@ -49,14 +50,37 @@ def tldr(update, context):
 # devto News
 
 
-def devTo(update, context):
-    data = devto()
-    # reply_keyboard = [['Today,s Top', 'Latest',]]
-    #   reply_markup=ReplyKeyboardMarkup(
-    #           reply_keyboard, one_time_keyboard=True
-    #   )
-    update.message.reply_text(data)
+def devTo(update: Update, context: CallbackContext) -> None:
+    """Sends a message with three inline buttons attached."""
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                "Top Articles of the day", callback_data='topArticles'),
+            InlineKeyboardButton(
+                "Latest Articles", callback_data='latestArticles'),
+        ]
+    ]
 
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    update.message.reply_text('What would you like to have?',
+                              reply_markup=reply_markup)
+
+
+def button(update: Update, context: CallbackContext) -> None:
+    """Parses the CallbackQuery and updates the message text."""
+    query = update.callback_query
+
+    # CallbackQueries need to be answered, even if no notification to the user is needed
+    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
+    query.answer()
+    # Now we can use context.bot, context.args and query.message
+    if query.data == 'topArticles':
+        data = devtoTop()
+        query.edit_message_text(text=data)
+    elif query.data == 'latestArticles':
+        data = devtoLatest()
+        query.edit_message_text(text=data)
 
 # there two methods to crete functions to get repond from bot this is 2nd one
 
@@ -109,6 +133,9 @@ if __name__ == '__main__':
 
     # Messages
     dp.add_handler(MessageHandler(Filters.text, handle_message))
+
+    # CallbackQueryHandler
+    dp.add_handler(CallbackQueryHandler(button))
 
     # Log all errors
     dp.add_error_handler(error)
