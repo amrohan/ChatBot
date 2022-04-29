@@ -1,7 +1,6 @@
 import os
 import json
 import datetime
-from time import sleep
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -42,22 +41,32 @@ def tldrData():
             rawData = content.text.strip()
             # clear new line from data
             data = rawData.replace('\n\n', '')
-            # Taking out only Programming, Design & Data Science section
-            mainData = data.split('\n')[16: 24]
-            # joininng all data into one string
-            joinData = '\n'.join(mainData)
-            # add new line to joindata after 5 index
-            finalData = joinData.replace('\n', '\n\n', 5)
-            # add new line to finalData
-            article = finalData + '\n' + "Read full article at: " + url
+            # firsthalf
+            firsthalf = data.split('\n')[2:9]
+            # secondhalf
+            secondhalf = data.split('\n')[9:16]
+            # thirdHalf
+            thirdHalf = data.split('\n')[16:24]
+            # fourthHalf
+            fourthHalf = data.split('\n')[24:32]
+
+            # Addinf data and then replacinf ir with new line
+            firsthalf = '\n'.join(firsthalf).replace('\n', '\n\n')
+            secondhalf = '\n'.join(secondhalf).replace('\n', '\n\n')
+            thirdHalf = '\n'.join(thirdHalf).replace('\n', '\n\n')
+            fourthHalf = '\n'.join(fourthHalf).replace('\n', '\n\n')
             print("TLDR Sent Succesfully 🚀")
-            return (article)
+
+            return (firsthalf, secondhalf, thirdHalf, fourthHalf)
+
     else:
         print("No articles today")
         return ("Sorry, on "+date+" there is no new article on tldr.tech ☹️")
 
 
 # Getting Devtop Top articles:
+
+
 def devtoTop():
     url = "https://dev.to/api/articles/"
     res = requests.get(url, headers={"Api-Key": Dev_Token})
@@ -222,6 +231,97 @@ def get_medium():
         'Description : '+desc5+'\n\n'+'Read Full article at : '+url5+'\n\n'
 
     return (mediumArticles)
+
+
+# Getting all techcrunch articles
+def get_techcrunch():
+    url = "https://techcrunch.com/"
+    res = requests.get(url)
+    soup = BeautifulSoup(res.text, "html.parser")
+
+    article_titles, article_contents, article_hrefs = [], [], []
+
+    for tag in soup.findAll("div", {"class": "post-block post-block--image post-block--unread"}):
+        tag_header = tag.find("a", {"class": "post-block__title__link"})
+        tag_content = tag.find("div", {"class": "post-block__content"})
+
+        article_title = tag_header.get_text().strip()
+        article_href = tag_header["href"]
+        article_content = tag_content.get_text().strip()
+
+        article_titles.append(article_title)
+        article_contents.append(article_content)
+        article_hrefs.append(article_href)
+
+    all_articles = []
+    article_count = int(len(article_titles))
+
+    for i in range(article_count):
+        all_articles.append([])
+
+    for i in range(article_count):
+        all_articles[i].append(article_titles[i])
+        all_articles[i].append(article_contents[i])
+        all_articles[i].append(article_hrefs[i])
+
+    # creating a dictionary
+    techcrunchArticles = 'Techcrunch Latest Articles 💻 \n'+'\n'+'Article01 : '+''+all_articles[0][0]+'\n\n' + \
+        'Description : '+all_articles[0][1]+'\n\n'+'Read Full article at : '+all_articles[0][2]+'\n\n' +\
+        '--------x--------'+'\n\n'+'Article_02 : '+all_articles[1][0]+'\n\n' + \
+        'Description : '+all_articles[1][1]+'\n\n'+'Read Full article at : '+all_articles[1][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_03 : '+all_articles[2][0]+'\n\n' + \
+        'Description : '+all_articles[2][1]+'\n\n'+'Read Full article at : '+all_articles[2][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_04 : '+all_articles[3][0]+'\n\n' + \
+        'Description : '+all_articles[3][1]+'\n\n'+'Read Full article at : '+all_articles[3][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_05 : '+all_articles[4][0]+'\n\n' + \
+        'Description : '+all_articles[4][1]+'\n\n' + \
+        'Read Full article at : '+all_articles[4][2]+'\n\n'
+
+    furtherArticles = 'Techcrunch Further Articles 💻 \n'+'\n'+'Article06 '+''+all_articles[5][0]+'\n\n' + \
+        'Description : '+all_articles[5][1]+'\n\n'+'Read Full article at : '+all_articles[5][2]+'\n\n' +\
+        '--------x--------'+'\n\n'+'Article_07 : '+all_articles[6][0]+'\n\n' + \
+        'Description : '+all_articles[6][1]+'\n\n'+'Read Full article at : '+all_articles[6][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_08 : '+all_articles[7][0]+'\n\n' + \
+        'Description : '+all_articles[7][1]+'\n\n'+'Read Full article at : '+all_articles[7][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_09 : '+all_articles[8][0]+'\n\n' + \
+        'Description : '+all_articles[8][1]+'\n\n'+'Read Full article at : '+all_articles[8][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_10 : '+all_articles[9][0]+'\n\n' + \
+        'Description : '+all_articles[9][1]+'\n\n' + \
+        'Read Full article at : '+all_articles[9][2]+'\n\n'
+
+    # only return title and read full article link
+
+    lastArticles = 'Techcrunch earliest Articles 💻 \n' + '\n'+'Article11 : '+''+all_articles[10][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[10][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_12 : '+all_articles[11][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[11][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_13 : '+all_articles[12][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[12][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_14 : '+all_articles[13][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[13][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_15 : '+all_articles[14][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[14][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_16 : '+all_articles[15][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[15][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_17 : '+all_articles[16][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[16][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_18 : '+all_articles[17][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[17][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_19 : '+all_articles[18][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[18][2]+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_20 : '+all_articles[19][0]+'\n\n' + \
+        'Read Full article at : '+all_articles[19][2]+'\n\n'\
+
+    print("Tech Crunch Articles sent successfully🚀")
+
+    # with open("articles.txt",'w',encoding = 'utf-8') as f:
+    #     for i in range(article_count):
+    #         if i:
+    #             f.write('\n\n\n\n')
+    #         for j in all_articles[i]:
+    #             f.write(f"{j} \n\n")
+
+    return (techcrunchArticles, furtherArticles, lastArticles)
 
 
 def get_quote():

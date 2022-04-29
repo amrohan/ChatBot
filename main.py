@@ -1,8 +1,6 @@
 import os
 import logging
-
-from numpy import empty
-from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote
+from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote, get_techcrunch
 from keep_alive import keep_alive
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
@@ -46,8 +44,18 @@ def quote(update, context):
 
 # tldr new
 def tldr(update, context):
-    data = tldrData()
-    update.message.reply_text(data)
+    keyboard = [
+        [
+            InlineKeyboardButton("tech", callback_data='tech'),
+            InlineKeyboardButton("science", callback_data='science'),
+            InlineKeyboardButton("programming", callback_data='programming'),
+            InlineKeyboardButton(
+                "miscellaneous", callback_data='miscellaneous')
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text(
+        '💡Choose a category from the list below.', reply_markup=reply_markup)
 
 # devto News
 
@@ -72,10 +80,11 @@ def devTo(update: Update, context: CallbackContext) -> None:
 def button(update: Update, context: CallbackContext) -> None:
     """Parses the CallbackQuery and updates the message text."""
     query = update.callback_query
-
-    # CallbackQueries need to be answered, even if no notification to the user is needed
-    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     query.answer()
+
+    # 💡 spreadind all data here
+    tech, science, programming, miscellaneous = tldrData()
+
     # Now we can use context.bot, context.args and query.message
     if query.data == 'topArticles':
         data = devtoTop()
@@ -83,6 +92,15 @@ def button(update: Update, context: CallbackContext) -> None:
     elif query.data == 'latestArticles':
         data = devtoLatest()
         query.edit_message_text(text=data)
+    elif query.data == 'tech':
+        query.edit_message_text(text=tech)
+    elif query.data == 'science':
+        query.edit_message_text(text=science)
+    elif query.data == 'programming':
+        query.edit_message_text(text=programming)
+    elif query.data == 'miscellaneous':
+        query.edit_message_text(text=miscellaneous)
+
 
 # Medium Articles
 
@@ -95,6 +113,14 @@ def medium(update, context):
     else:
         update.message.reply_text("try clicking the command again \n /medium")
 
+# Tech Crunch Articles
+
+
+def techcrunch(update, context):
+    start, mid, last = get_techcrunch()
+    update.message.reply_text(start)
+    update.message.reply_text(mid)
+    update.message.reply_text(last)
 
 # there two methods to crete functions to get repond from bot this is 2nd one
 
@@ -146,6 +172,8 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('devto', devTo))
     # Medium
     dp.add_handler(CommandHandler('medium', medium))
+    # Tech Crunch Articles
+    dp.add_handler(CommandHandler('techcrunch', techcrunch))
 
     # Messages
     dp.add_handler(MessageHandler(Filters.text, handle_message))

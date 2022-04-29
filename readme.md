@@ -14,8 +14,11 @@ Changes to the bot now allow you to host fully on Replit.com without having to c
 Also added new commands:
 
 - /tldr - Get a tldr news
-- /devto - Get a dev.to top 5 posts of the day
+- /devto - Get a dev.to news according to your interests
+- /techcrunch - Get a techcrunch top 20 posts
+- /medium - Articles from medium ( Tech related )
 - /quotes - Get a random quote
+
 
 ## Demo
 
