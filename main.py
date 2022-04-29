@@ -1,6 +1,8 @@
 import os
 import logging
-from scraper import devtoTop, devtoLatest, tldrData, get_quote
+
+from numpy import empty
+from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote
 from keep_alive import keep_alive
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
@@ -82,6 +84,18 @@ def button(update: Update, context: CallbackContext) -> None:
         data = devtoLatest()
         query.edit_message_text(text=data)
 
+# Medium Articles
+
+
+def medium(update, context):
+    data = get_medium()
+    print(data)
+    if len(data) != 0:
+        update.message.reply_text(data)
+    else:
+        update.message.reply_text("try clicking the command again \n /medium")
+
+
 # there two methods to crete functions to get repond from bot this is 2nd one
 
 
@@ -130,6 +144,8 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('tldr', tldr))
     # Dev To
     dp.add_handler(CommandHandler('devto', devTo))
+    # Medium
+    dp.add_handler(CommandHandler('medium', medium))
 
     # Messages
     dp.add_handler(MessageHandler(Filters.text, handle_message))

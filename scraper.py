@@ -1,6 +1,7 @@
 import os
 import json
 import datetime
+from time import sleep
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -148,6 +149,79 @@ def devtoLatest():
 
     print('Devto latest articles sent succesfully 🚀')
     return latestArticles
+
+
+# Getting latest archived articles from medium {technology}
+def get_medium():
+    url = "https://medium.com/tag/technology"
+    res = requests.get(url, headers={
+                       "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'})
+    # print(res.status_code)
+    soup = BeautifulSoup(res.text, 'html.parser')
+    # h1 = soup.find_all('h1')
+    # h2 = soup.find_all('h2')
+    # h3 = soup.find_all('h3')
+    a = soup.find_all('a', class_=(
+        'au av aw ax ay az ba bb bc bd be bf bg bh bi'))
+    art = soup.find_all('div', class_=('l ep kf'))
+    # Declaring arr so after looping values can be store inside it
+    artArray = []
+    for x in art:
+        # print(da)
+        postUrl = x.find('a')
+        # all titles are in h2 tag
+        heading = x.find(
+            'h2', class_="bn fw kl km kn ko ga kp kq kr ks ge kt ku kv kw gi kx ky kz la gm lb lc ld le gq gr gs gt gv gw fu")
+        title = heading.contents[0]
+        # Getting the description
+        description = x.find('p')
+        desc = description.contents[0]
+        href = postUrl.get('href')
+        url = "https://medium.com"+href
+        # print(title)
+        # print(desc)
+        # print(url)
+        # print('\n')
+        # creating a dictionary
+        artArray.append(title)
+        artArray.append(desc)
+        artArray.append(url)
+
+    # getting articles by test
+    title1 = artArray[0]
+    desc1 = artArray[1]
+    url1 = artArray[2]
+
+    title2 = artArray[3]
+    desc2 = artArray[4]
+    url2 = artArray[5]
+
+    title3 = artArray[6]
+    desc3 = artArray[7]
+    url3 = artArray[8]
+
+    title4 = artArray[9]
+    desc4 = artArray[10]
+    url4 = artArray[11]
+
+    title5 = artArray[12]
+    desc5 = artArray[13]
+    url5 = artArray[14]
+
+    # returning the articles (tbh : its noob way to return multiple values but i dont know how to do it other way than this)
+
+    mediumArticles = 'Medium Technology Articles 💻 \n'+'\n'+'Article01 : '+title1+'\n\n' + \
+        'Description : '+desc1+'\n\n'+'Read Full article at : '+url1+'\n\n' +\
+        '--------x--------'+'\n\n'+'Article_02 : '+title2+'\n\n' + \
+        'Description : '+desc2+'\n\n'+'Read Full article at : '+url2+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_03 : '+title3+'\n\n' + \
+        'Description : '+desc3+'\n\n'+'Read Full article at : '+url3+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_04 : '+title4+'\n\n' + \
+        'Description : '+desc4+'\n\n'+'Read Full article at : '+url4+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_05 : '+title5+'\n\n' + \
+        'Description : '+desc5+'\n\n'+'Read Full article at : '+url5+'\n\n'
+
+    return (mediumArticles)
 
 
 def get_quote():
