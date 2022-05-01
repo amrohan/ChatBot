@@ -61,7 +61,9 @@ def tldrData():
 
     else:
         print("No articles today")
-        return ("Sorry, on "+date+" there is no new article on tldr.tech ☹️")
+        noArt = "Sorry, on "+date+" there is no new article on tldr.tech ☹️"
+        a, b, c, d = (noArt, noArt, noArt, noArt)
+        return (a, b, c, d)
 
 
 # Getting Devtop Top articles:

@@ -82,9 +82,6 @@ def button(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
     query.answer()
 
-    # 💡 spreadind all data here
-    tech, science, programming, miscellaneous = tldrData()
-
     # Now we can use context.bot, context.args and query.message
     if query.data == 'topArticles':
         data = devtoTop()
@@ -93,12 +90,16 @@ def button(update: Update, context: CallbackContext) -> None:
         data = devtoLatest()
         query.edit_message_text(text=data)
     elif query.data == 'tech':
+        tech, science, programming, miscellaneous = tldrData()
         query.edit_message_text(text=tech)
     elif query.data == 'science':
+        tech, science, programming, miscellaneous = tldrData()
         query.edit_message_text(text=science)
     elif query.data == 'programming':
+        tech, science, programming, miscellaneous = tldrData()
         query.edit_message_text(text=programming)
     elif query.data == 'miscellaneous':
+        tech, science, programming, miscellaneous = tldrData()
         query.edit_message_text(text=miscellaneous)
 
 

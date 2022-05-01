@@ -2,7 +2,7 @@
 
 A is a simple Telegram bot that responds to users automatically when they communicate with it.
 
-## Latest Update (v0.1.0)
+## Latest Update (v0.1.2)
 
 26/04/2022
 
