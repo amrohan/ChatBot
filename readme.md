@@ -65,7 +65,7 @@ The steps to execute this on your local machine are as follows:
 1. After that install requirement.txt
 
 ```
- pip instal -r requirements.txt
+ pip instal -r requirement.txt
 ```
 
 OR
