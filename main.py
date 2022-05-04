@@ -1,6 +1,6 @@
 import os
 import logging
-from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote, get_techcrunch
+from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote, get_techcrunch, get_hackerNews
 from keep_alive import keep_alive
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
@@ -123,6 +123,13 @@ def techcrunch(update, context):
     update.message.reply_text(mid)
     update.message.reply_text(last)
 
+
+# HackerNews
+def hackerNews(update, context):
+    top, more = get_hackerNews()
+    update.message.reply_text(top)
+    update.message.reply_text(more)
+
 # there two methods to crete functions to get repond from bot this is 2nd one
 
 
@@ -175,6 +182,8 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('medium', medium))
     # Tech Crunch Articles
     dp.add_handler(CommandHandler('techcrunch', techcrunch))
+    # Hacker News
+    dp.add_handler(CommandHandler('hackerNews', hackerNews))
 
     # Messages
     dp.add_handler(MessageHandler(Filters.text, handle_message))

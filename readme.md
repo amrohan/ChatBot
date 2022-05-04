@@ -4,7 +4,7 @@ A is a simple Telegram bot that responds to users automatically when they commun
 
 ## Latest Update (v0.1.2)
 
-26/04/2022
+4/05/2022
 
 **Click on badge to run it on repl.it 👉🚀
 [![Run on Repl.it](https://repl.it/badge/github/amrohan/ChatBot)](https://replit.com/@amrohan/chatbot)**
@@ -15,6 +15,7 @@ Also added new commands:
 
 - /tldr - Get a tldr news
 - /devto - Get a dev.to news according to your interests
+- /hackernews - Get a HackerNews all 30 news 
 - /techcrunch - Get a techcrunch top 20 posts
 - /medium - Articles from medium ( Tech related )
 - /quotes - Get a random quote

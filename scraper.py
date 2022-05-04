@@ -1,6 +1,7 @@
 import os
 import json
 import datetime
+from regex import A
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -332,3 +333,83 @@ def get_quote():
     quote = json_data[0]['q']+"\n - by "+json_data[0]['a']
     print('Quotes Sent Succesfully 🚀')
     return (quote)
+
+
+# HackerNews
+def get_hackerNews():
+    response = requests.get("https://news.ycombinator.com/news")
+    soup = BeautifulSoup(response.content, 'html.parser')
+    all_articles = []
+    for item in soup.find_all('tr'):
+        data = item.select('.titlelink')
+        if data:
+            all_articles.append(item.select('.titlelink')[0].get_text())
+            all_articles.append(item.select('.titlelink')[0].get('href'))
+
+    hackerNewsTop = 'HackerNews Articles 💻 \n'+'\n'+'Article_01 : '+''+all_articles[2]+'\n\n' + \
+        'ReadAt : '+all_articles[3]+'\n\n' + \
+        '--x--'+'\n\n'+'Article_02 : '+all_articles[4]+'\n\n' + \
+        'ReadAt : '+all_articles[5]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_03 : '+all_articles[6]+'\n\n' + \
+        'ReadAt : '+all_articles[7]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_04 : '+all_articles[8]+'\n\n' + \
+        'ReadAt : '+all_articles[9]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_05 : '+all_articles[10]+'\n\n' + \
+        'ReadAt : '+all_articles[11]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_06 : '+all_articles[12]+'\n\n' + \
+        'ReadAt : '+all_articles[13]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_07 : '+all_articles[14]+'\n\n' + \
+        'ReadAt : '+all_articles[15]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_08 : '+all_articles[16]+'\n\n' + \
+        'ReadAt : '+all_articles[17]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_09 : '+all_articles[18]+'\n\n' + \
+        'ReadAt : '+all_articles[19]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_10 : '+all_articles[20]+'\n\n' + \
+        'ReadAt : '+all_articles[21]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_11 : '+all_articles[22]+'\n\n' + \
+        'ReadAt : '+all_articles[23]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_12 : '+all_articles[24]+'\n\n' + \
+        'ReadAt : '+all_articles[25]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_13 : '+all_articles[26]+'\n\n' + \
+        'ReadAt : '+all_articles[27]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_14 : '+all_articles[28]+'\n\n' + \
+        'ReadAt : '+all_articles[29]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_15 : '+all_articles[30]+'\n\n' + \
+        'ReadAt : '+all_articles[31]+'\n\n'
+
+    hackerNewsMore = 'HackerNews Articles 💻 \n'+'\n'+'Article_16 : '+''+all_articles[32]+'\n\n' + \
+        'ReadAt : '+all_articles[33]+'\n\n' + \
+        '--x--'+'\n\n'+'Article_17 : '+all_articles[34]+'\n\n' + \
+        'ReadAt : '+all_articles[35]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_18 : '+all_articles[36]+'\n\n' + \
+        'ReadAt : '+all_articles[37]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_19 : '+all_articles[38]+'\n\n' + \
+        'ReadAt : '+all_articles[39]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_20 : '+all_articles[40]+'\n\n' + \
+        'ReadAt : '+all_articles[41]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_21 : '+all_articles[42]+'\n\n' + \
+        'ReadAt : '+all_articles[43]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_22 : '+all_articles[44]+'\n\n' + \
+        'ReadAt : '+all_articles[45]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_23 : '+all_articles[46]+'\n\n' + \
+        'ReadAt : '+all_articles[47]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_24 : '+all_articles[48]+'\n\n' + \
+        'ReadAt : '+all_articles[49]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_25 : '+all_articles[50]+'\n\n' + \
+        'ReadAt : '+all_articles[51]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_26 : '+all_articles[52]+'\n\n' + \
+        'ReadAt : '+all_articles[53]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_27 : '+all_articles[54]+'\n\n' + \
+        'ReadAt : '+all_articles[55]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_28 : '+all_articles[56]+'\n\n' + \
+        'ReadAt : '+all_articles[57]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_29 : '+all_articles[58]+'\n\n' + \
+        'ReadAt : '+all_articles[59]+'\n\n' +\
+        '--x--'+'\n\n'+'Article_30 : '+all_articles[60]+'\n\n' + \
+        'ReadAt : '+all_articles[61]+'\n\n'
+
+    return(hackerNewsTop, hackerNewsMore)
+
+    # with open("HackerNews.txt",'w',encoding = 'utf-8') as f:
+    #     f.write(hackerNewsTop)
+
