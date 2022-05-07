@@ -1,0 +1,49 @@
+📱
+
+Big Tech &
+
+Startups
+
+TikTok will start to share ad revenue with creators (2 minute read)
+
+TikTok Pulse is a new program that will give creators a share of revenue. TikTok hasn't said how many creators it will accept into the program, but creators will need at least 100,000 followers to be eligible. The program will launch in the US in June. TikTok's Creator Fund pays users based on the popularity of their videos, but creators say the payouts from the program can be small and inconsistent.
+
+How big companies kill ideas — and how to fight back, with Tony Fadell (53 minute read)
+
+This article features an interview with Tony Fadell. Fadell was instrumental in the development of the iPod and iPhone at Apple. He co-founded Nest Labs, which was sold to Google for $3.2 billion in 2014. Fadell now runs an investment firm called Future Shape. In the interview, Fadell talks about decision making, the metaverse, the negatives of perk culture, how companies kill ideas, and more.🚀
+
+Science &
+
+Futuristic Technology
+
+Lab-Grown Brain Experiment Reverses The Effects of Autism-Linked Gene (3 minute read)
+
+Scientists have used two different gene therapy strategies to reverse the effects of a gene known to cause Pitt Hopkins syndrome. Pitt Hopkins syndrome is a complex condition classed in the autism spectrum that presents with a range of severities. It stems from a mutation in a gene called transcription factor 4 (TCF4). TCF4 is important to brain development, but scientists know little about its mechanisms. The research was conducted on organoids and it will be a long while before the technique can be tested on real brains.
+
+A visit to the human factory (14 minute read)
+
+Clips of Engineered Arts' bot Ameca went viral last December as people were amazed by its realistic facial expressions when interacting with researchers. The robot displayed emotions and responded to questions and movements in an eerily human way. This article discusses Engineered Arts, the history of robotics, how Ameca was developed, and more. It contains many pictures and videos from Engineered Arts' offices where they build their robots.💻
+
+Programming, Design & Data Science
+
+Scrollex (GitHub Repo)
+
+Scrollex is a library for building beautiful scroll experiences using minimal code. A library of interactive demos is available.
+
+parca (GitHub Repo)
+
+parca provides continuous profiling of CPU and memory usage over time, down to the line number. It can automatically discover targets from Kubernetes or systemd with very low overhead. parca uses open standards and features optimized storage and querying. It can help organizations save money, improve performance, and understand incidents.
+
+6 Best Practices for Kubernetes Audit Logging (Sponsor)
+
+Running Kubernetes is challenging and complex. Learn how to set up Kubernetes audit logging to troubleshoot your deployment.🎁
+
+Miscellaneous
+
+Making friends on the internet (6 minute read)
+
+The internet can be a great place for finding friends. This article discusses several strategies for using Twitter or other platforms to find friends on the internet. It also tells a personal story of how the author developed their internet friendships.
+
+The Google Incentive Mismatch: Problems with Promotion-Oriented Cultures (3 minute read)
+
+This article discusses the problems with promo-culture and suggests alternatives. Engineers at big companies tend to be focused on getting to the next level of their careers. This can mean more money, responsibility, respect, and a feeling of progress. Promo-culture can result in a lot of abandoned projects as people focus on their next advancement rather than working on a product. It can mean that engineers have to choose between doing what's best for users or what's best for their careers.

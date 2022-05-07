@@ -1,6 +1,6 @@
-# Telegram Chat-Bot
+# Telegram Dev News Bot 
 
-A is a simple Telegram bot that responds to users automatically when they communicate with it.
+A Telegram bot that gathers news from multiple sources in one location so you don't have to.
 
 ## Latest Update (v0.1.2)
 
@@ -23,7 +23,7 @@ Also added new commands:
 
 ## Demo
 
-Test the bot here 👉 [Chat-Bot](https://t.me/amrohan_bot)
+Test the bot here 👉 [Chat-Bot](https://t.me/Dev)
 
 <p align="center">
 <img src="https://res.cloudinary.com/amrohan/image/upload/v1650983650/Images/xtkerudyi6sul1xfqlui.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="40%" height="40%" />

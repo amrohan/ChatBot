@@ -1,6 +1,6 @@
 import os
 import logging
-from scraper import devtoTop, devtoLatest, tldrData, get_medium, get_quote, get_techcrunch, get_hackerNews
+from scraper import devtoTop, devtoLatest, get_tldr, get_medium, get_quote, get_techcrunch, get_hackerNews
 from keep_alive import keep_alive
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
@@ -90,16 +90,16 @@ def button(update: Update, context: CallbackContext) -> None:
         data = devtoLatest()
         query.edit_message_text(text=data)
     elif query.data == 'tech':
-        tech, science, programming, miscellaneous = tldrData()
+        tech, science, programming, miscellaneous = get_tldr()
         query.edit_message_text(text=tech)
     elif query.data == 'science':
-        tech, science, programming, miscellaneous = tldrData()
+        tech, science, programming, miscellaneous = get_tldr()
         query.edit_message_text(text=science)
     elif query.data == 'programming':
-        tech, science, programming, miscellaneous = tldrData()
+        tech, science, programming, miscellaneous = get_tldr()
         query.edit_message_text(text=programming)
     elif query.data == 'miscellaneous':
-        tech, science, programming, miscellaneous = tldrData()
+        tech, science, programming, miscellaneous = get_tldr()
         query.edit_message_text(text=miscellaneous)
 
 

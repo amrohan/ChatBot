@@ -1,0 +1,181 @@
+HackerNews Articles 💻 
+
+Article_01 : Heroku Security Notification
+
+ReadAt : https://status.heroku.com/incidents/2413?updated
+
+--x--
+
+Article_02 : Mechanical Watch
+
+ReadAt : https://ciechanow.ski/mechanical-watch/
+
+--x--
+
+Article_03 : Teen mental health is plummeting and social media is a major contributing cause [pdf]
+
+ReadAt : https://www.judiciary.senate.gov/imo/media/doc/Haidt%20Testimony.pdf
+
+--x--
+
+Article_04 : Zero downtime migrations
+
+ReadAt : https://kiranrao.ca/2022/05/04/zero-downtime-migrations.html
+
+--x--
+
+Article_05 : What game are you playing?
+
+ReadAt : https://www.autodidacts.io/what-game-are-you-playing/
+
+--x--
+
+Article_06 : Swarming drones autonomously navigate a dense forest
+
+ReadAt : https://techcrunch.com/2022/05/04/swarming-drones-autonomously-navigate-a-dense-forest-and-chase-a-human/
+
+--x--
+
+Article_07 : EBUG: The NHL's emergency backup goalie rule
+
+ReadAt : https://whyisthisinteresting.substack.com/p/the-ebug-edition
+
+--x--
+
+Article_08 : ActivitySub
+
+ReadAt : http://len.falken.directory/web/activity-sub.txt
+
+--x--
+
+Article_09 : I fell in love with low-JS
+
+ReadAt : https://edofic.com/posts/2022-01-28-low-js/
+
+--x--
+
+Article_10 : Ask HN: My house just got hit by lightning and it fried the PSU in my computer
+
+ReadAt : item?id=31270349
+
+--x--
+
+Article_11 : A 2000-year-old postcard
+
+ReadAt : https://blogs.bl.uk/digitisedmanuscripts/2022/04/postcard.html
+
+--x--
+
+Article_12 : After the first tech job
+
+ReadAt : https://lowlyswe.substack.com/p/after-the-first-tech-job
+
+--x--
+
+Article_13 : The hardest thing about making decisions is saying no
+
+ReadAt : https://fev.al/posts/saying-no/
+
+--x--
+
+Article_14 : What we can deduce from a leaked PDF
+
+ReadAt : https://matthewbutterick.com/chron/what-we-can-deduce-from-a-leaked-pdf.html
+
+--x--
+
+Article_15 : Before camping got wimpy: Roughing it with the Victorians
+
+ReadAt : https://www.collectorsweekly.com/articles/before-camping-got-wimpy/
+
+
+HackerNews Articles 💻 
+
+Article_16 : Unlock the Door
+
+ReadAt : https://www.lincolnquirk.com/home/2021/10/27/unlock-doors.html
+
+--x--
+
+Article_17 : How Well Can You Kaggle with Just One Hour a Day?
+
+ReadAt : https://wandb.ai/sairam6087/humpback_whale/reports/How-Well-Can-You-Kaggle-with-Just-One-Hour-a-Day---VmlldzoxNjQxMTQ4
+
+--x--
+
+Article_18 : Nelson testifies cost-plus contracts have been a “plague” on NASA
+
+ReadAt : https://payloadspace.com/nelson-testifies-cost-plus-contracts-have-been-a-plague-on-nasa/
+
+--x--
+
+Article_19 : Former Facebook, WhatsApp employees lead new push to fix social media
+
+ReadAt : https://www.wsj.com/articles/social-media-startups-take-aim-at-facebook-and-elon-musk-11651656600
+
+--x--
+
+Article_20 : Postgres and Parquet in the data lake
+
+ReadAt : https://www.crunchydata.com/blog/parquet-and-postgres-in-the-data-lake
+
+--x--
+
+Article_21 : The A.I. Of Doom
+
+ReadAt : https://www.gamedeveloper.com/blogs/the-ai-of-doom-1993
+
+--x--
+
+Article_22 : Dude, where's my fuel?
+
+ReadAt : https://www.prometheusfuels.com/news/dude-wheres-my-fuel
+
+--x--
+
+Article_23 : Science of Fasting
+
+ReadAt : https://spyderdoc.substack.com/p/doctors-heart-series-part-6-science
+
+--x--
+
+Article_24 : Airbnb Q1
+
+ReadAt : https://twitter.com/bchesky/status/1521582440783007745
+
+--x--
+
+Article_25 : Tailscale raises $100M
+
+ReadAt : https://tailscale.com/blog/series-b/
+
+--x--
+
+Article_26 : Jax vs. Julia (Vs PyTorch)
+
+ReadAt : https://kidger.site/thoughts/jax-vs-julia/
+
+--x--
+
+Article_27 : Mighty (YC S19) is hiring software engineers to build a better browser
+
+ReadAt : https://www.notion.so/Mighty-is-hiring-945d3168d3e34a37883ca4d823ed734f
+
+--x--
+
+Article_28 : The semiconductor bust – still coming?
+
+ReadAt : https://asianometry.substack.com/p/the-semiconductor-bust-still-coming
+
+--x--
+
+Article_29 : IBM's Asshole Test
+
+ReadAt : https://johnpublic.mataroa.blog/blog/the-asshole-test/
+
+--x--
+
+Article_30 : A social analgesic? Acetaminophen (paracetamol) reduces positive empathy
+
+ReadAt : https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6455058/
+

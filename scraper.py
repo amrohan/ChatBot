@@ -1,7 +1,8 @@
 import os
 import json
 import datetime
-from regex import A
+from xml.dom.minidom import Element
+from numpy import append
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -27,7 +28,7 @@ def currentDate():
 # Scrapping data from tldr page
 
 
-def tldrData():
+def get_tldr():
     date = datetime.datetime.now()
     date = date.strftime("%Y-%m-%d")
     url = 'https://tldr.tech/newsletter/' + date
@@ -42,6 +43,7 @@ def tldrData():
             rawData = content.text.strip()
             # clear new line from data
             data = rawData.replace('\n\n', '')
+            # dropFile = rawData.replace('\n\n', '\n')
             # firsthalf
             firsthalf = data.split('\n')[2:9]
             # secondhalf
@@ -170,73 +172,46 @@ def get_medium():
                        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'})
     # print(res.status_code)
     soup = BeautifulSoup(res.text, 'html.parser')
-    # h1 = soup.find_all('h1')
-    # h2 = soup.find_all('h2')
-    # h3 = soup.find_all('h3')
-    a = soup.find_all('a', class_=(
-        'au av aw ax ay az ba bb bc bd be bf bg bh bi'))
-    art = soup.find_all('div', class_=('l ep kf'))
-    # Declaring arr so after looping values can be store inside it
     artArray = []
-    for x in art:
-        # print(da)
-        postUrl = x.find('a')
-        # all titles are in h2 tag
-        heading = x.find(
-            'h2', class_="bn fw kl km kn ko ga kp kq kr ks ge kt ku kv kw gi kx ky kz la gm lb lc ld le gq gr gs gt gv gw fu")
-        title = heading.contents[0]
-        # Getting the description
-        description = x.find('p')
-        desc = description.contents[0]
-        href = postUrl.get('href')
-        url = "https://medium.com"+href
-        # print(title)
-        # print(desc)
-        # print(url)
-        # print('\n')
-        # creating a dictionary
-        artArray.append(title)
-        artArray.append(desc)
-        artArray.append(url)
+    for article in soup.select('.meteredContent'):
+        # print(article.text)
+        title = article.find_all('h2')[0].getText()
+        # The index 3 shows the 4th "a" tag
+        url = article.find_all('a')[3].get('href')
+        # appending medium.com before url 
+        link= "medium.com"+url
+        # Appending data into array 
+        artArray.append({"title": title, "url": link})
+    
+    # pass all value of title and url into a single string
+    mediumArticle = 'Medium Technology Articles 🧑‍💻\n'+'\n'+'Article_01 : '+title+'\n\n' + \
+        'Read Full article at : '+link+'\n\n' +\
+        '--------x--------'+'\n\n'+'Article_02 : '+artArray[1]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[1]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_03 : '+artArray[2]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[2]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_04 : '+artArray[3]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[3]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_05 : '+artArray[4]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[4]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_06 : '+artArray[5]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[5]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_07 : '+artArray[6]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[6]['url']+'\n\n'\
+        '--------x--------'+'\n\n'+'Article_08 : '+artArray[7]['title']+'\n\n' + \
+        'Read Full article at : '+artArray[7]['url']+'\n\n'
 
-    # getting articles by test
-    title1 = artArray[0]
-    desc1 = artArray[1]
-    url1 = artArray[2]
 
-    title2 = artArray[3]
-    desc2 = artArray[4]
-    url2 = artArray[5]
+    print(mediumArticle)
+    print('Medium technology articles sent succesfully 🚀')
 
-    title3 = artArray[6]
-    desc3 = artArray[7]
-    url3 = artArray[8]
 
-    title4 = artArray[9]
-    desc4 = artArray[10]
-    url4 = artArray[11]
 
-    title5 = artArray[12]
-    desc5 = artArray[13]
-    url5 = artArray[14]
-
-    # returning the articles (tbh : its noob way to return multiple values but i dont know how to do it other way than this)
-
-    mediumArticles = 'Medium Technology Articles 💻 \n'+'\n'+'Article01 : '+title1+'\n\n' + \
-        'Description : '+desc1+'\n\n'+'Read Full article at : '+url1+'\n\n' +\
-        '--------x--------'+'\n\n'+'Article_02 : '+title2+'\n\n' + \
-        'Description : '+desc2+'\n\n'+'Read Full article at : '+url2+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_03 : '+title3+'\n\n' + \
-        'Description : '+desc3+'\n\n'+'Read Full article at : '+url3+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_04 : '+title4+'\n\n' + \
-        'Description : '+desc4+'\n\n'+'Read Full article at : '+url4+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_05 : '+title5+'\n\n' + \
-        'Description : '+desc5+'\n\n'+'Read Full article at : '+url5+'\n\n'
-
-    return (mediumArticles)
-
+get_medium()
 
 # Getting all techcrunch articles
+
+
 def get_techcrunch():
     url = "https://techcrunch.com/"
     res = requests.get(url)
@@ -316,13 +291,6 @@ def get_techcrunch():
         'Read Full article at : '+all_articles[19][2]+'\n\n'\
 
     print("Tech Crunch Articles sent successfully🚀")
-
-    # with open("articles.txt",'w',encoding = 'utf-8') as f:
-    #     for i in range(article_count):
-    #         if i:
-    #             f.write('\n\n\n\n')
-    #         for j in all_articles[i]:
-    #             f.write(f"{j} \n\n")
 
     return (techcrunchArticles, furtherArticles, lastArticles)
 
@@ -408,8 +376,5 @@ def get_hackerNews():
         '--x--'+'\n\n'+'Article_30 : '+all_articles[60]+'\n\n' + \
         'ReadAt : '+all_articles[61]+'\n\n'
 
+    print('Hackernews Articles sent successfully🚀')
     return(hackerNewsTop, hackerNewsMore)
-
-    # with open("HackerNews.txt",'w',encoding = 'utf-8') as f:
-    #     f.write(hackerNewsTop)
-
