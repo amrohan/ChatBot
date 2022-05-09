@@ -1,8 +1,6 @@
 import os
 import json
 import datetime
-from xml.dom.minidom import Element
-from numpy import append
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -178,11 +176,11 @@ def get_medium():
         title = article.find_all('h2')[0].getText()
         # The index 3 shows the 4th "a" tag
         url = article.find_all('a')[3].get('href')
-        # appending medium.com before url 
-        link= "medium.com"+url
-        # Appending data into array 
+        # appending medium.com before url
+        link = "medium.com"+url
+        # Appending data into array
         artArray.append({"title": title, "url": link})
-    
+
     # pass all value of title and url into a single string
     mediumArticle = 'Medium Technology Articles 🧑‍💻\n'+'\n'+'Article_01 : '+title+'\n\n' + \
         'Read Full article at : '+link+'\n\n' +\
@@ -193,21 +191,11 @@ def get_medium():
         '--------x--------'+'\n\n'+'Article_04 : '+artArray[3]['title']+'\n\n' + \
         'Read Full article at : '+artArray[3]['url']+'\n\n'\
         '--------x--------'+'\n\n'+'Article_05 : '+artArray[4]['title']+'\n\n' + \
-        'Read Full article at : '+artArray[4]['url']+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_06 : '+artArray[5]['title']+'\n\n' + \
-        'Read Full article at : '+artArray[5]['url']+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_07 : '+artArray[6]['title']+'\n\n' + \
-        'Read Full article at : '+artArray[6]['url']+'\n\n'\
-        '--------x--------'+'\n\n'+'Article_08 : '+artArray[7]['title']+'\n\n' + \
-        'Read Full article at : '+artArray[7]['url']+'\n\n'
+        'Read Full article at : '+artArray[4]['url']+'\n\n'
 
-
-    print(mediumArticle)
     print('Medium technology articles sent succesfully 🚀')
+    return(mediumArticle)
 
-
-
-get_medium()
 
 # Getting all techcrunch articles
 
