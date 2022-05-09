@@ -2,6 +2,7 @@ import os
 import logging
 from scraper import devtoTop, devtoLatest, get_tldr, get_medium, get_quote, get_techcrunch, get_hackerNews
 from keep_alive import keep_alive
+from megaSync import uploadAll
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import responses
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
@@ -198,4 +199,5 @@ if __name__ == '__main__':
     # Run the bot
     updater.start_polling(1.0)
     # Idle state give bot time to go in idle
+    uploadAll()
     updater.idle()
