@@ -1,9 +1,0 @@
-responses >= 0.20.0
-python-telegram-bot >=13.11
-telegram >=0.0.1
-Flask >= 2.1.1
-requests >= 2.27.1
-beautifulsoup4 >= 4.11.1
-python-dotenv>= 0.20.0
-bs4 >= 0.0.1
-schedule>= 1.1.0
